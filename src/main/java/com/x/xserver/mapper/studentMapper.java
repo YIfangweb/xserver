@@ -21,6 +21,6 @@ public interface studentMapper {
      * @param  spassword
      * @return students
      */
-    @Select("select * from x_students where sid = #{sid}")
+    @Select("select * from x_students where sid = #{sid} and spassword = #{spassword}")
     public student loginByidBypassword(Integer sid,String spassword);
 }
