@@ -21,7 +21,7 @@ public class studentController {
         return studentService.findById(sid);
     }
 
-    @RequestMapping("/api/login")
+    @RequestMapping("/api/slogin")
     public studentloginMsg loginByidBypassword(@RequestParam("sid") Integer sid, @RequestParam("spassword") String spassword){
         student student =  studentService.loginByidBypassword(sid,spassword);
         if(student!=null){
