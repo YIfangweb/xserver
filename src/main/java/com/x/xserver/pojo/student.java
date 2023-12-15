@@ -6,14 +6,7 @@ public class student {
     public String spassword;
     public String sclass;
     public int syear;
-
-    public student(int sid, String sname, String spassword, String sclass, int syear) {
-        this.sid = sid;
-        this.sname = sname;
-        this.spassword = spassword;
-        this.sclass = sclass;
-        this.syear = syear;
-    }
+    public  String sunique;
 
     public int getSid() {
         return sid;
@@ -53,5 +46,22 @@ public class student {
 
     public void setSyear(int syear) {
         this.syear = syear;
+    }
+
+    public String getSunique() {
+        return sunique;
+    }
+
+    public void setSunique(String sunique) {
+        this.sunique = sunique;
+    }
+
+    public student(int sid, String sname, String spassword, String sclass, int syear, String sunique) {
+        this.sid = sid;
+        this.sname = sname;
+        this.spassword = spassword;
+        this.sclass = sclass;
+        this.syear = syear;
+        this.sunique = sunique;
     }
 }
