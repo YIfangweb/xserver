@@ -62,4 +62,9 @@ public class systemServiceImpI implements systemService {
     public Integer onTeacherSignIn(Integer tid, String tname, String tpassword, String tunique) {
         return systemMapper.onTeacherSignIn(tid,tname,tpassword,tunique);
     }
+
+    @Override
+    public Integer updateStudent(Integer sid, String spassword) {
+        return systemMapper.updateStudent(sid,spassword);
+    }
 }

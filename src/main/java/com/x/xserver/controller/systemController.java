@@ -92,4 +92,11 @@ public class systemController {
             return new signInMsg(null,"error");
         }
     }
+
+    @PostMapping("/updateStudent")
+    @Transactional
+    public Integer updateStudent(@RequestParam("sid")Integer sid,
+                                 @RequestParam("spassword")String spassword) {
+        return systemService.updateStudent(sid,spassword);
+    }
 }

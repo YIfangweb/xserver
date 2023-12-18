@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import com.x.xserver.pojo.student;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface systemMapper {
@@ -87,4 +88,10 @@ public interface systemMapper {
     @Insert("insert into x_teacher(tid, tname, tpassword, tunique)  values (#{tid},#{tname},#{tpassword},#{tunique})")
     Integer onTeacherSignIn(Integer tid, String tname, String tpassword, String tunique);
 
+    /**
+     * 学生信息修改接口
+     * @return Integer
+     */
+    @Update("update x_students set  spassword = #{spassword} where sid = #{sid}")
+    Integer updateStudent(Integer sid,  String spassword);
 }

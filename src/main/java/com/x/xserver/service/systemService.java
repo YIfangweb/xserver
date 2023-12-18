@@ -25,4 +25,6 @@ public interface systemService {
     public Integer onStudentSignIn(Integer sid, String sname, String spassword , String sclass , Integer syear, String sunique);
 
     public Integer onTeacherSignIn(Integer tid, String tname, String tpassword , String tunique);
+
+    public Integer updateStudent(Integer sid, String spassword);
 }
