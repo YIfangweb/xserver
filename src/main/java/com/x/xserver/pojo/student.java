@@ -4,9 +4,16 @@ public class student {
     public int sid;
     public String sname;
     public String spassword;
-    public String sclass;
-    public int syear;
+    public String sclassname;
     public  String sunique;
+
+    public student(int sid, String sname, String spassword, String sclassname, String sunique) {
+        this.sid = sid;
+        this.sname = sname;
+        this.spassword = spassword;
+        this.sclassname = sclassname;
+        this.sunique = sunique;
+    }
 
     public int getSid() {
         return sid;
@@ -32,20 +39,12 @@ public class student {
         this.spassword = spassword;
     }
 
-    public String getSclass() {
-        return sclass;
+    public String getSclassname() {
+        return sclassname;
     }
 
-    public void setSclass(String sclass) {
-        this.sclass = sclass;
-    }
-
-    public int getSyear() {
-        return syear;
-    }
-
-    public void setSyear(int syear) {
-        this.syear = syear;
+    public void setSclassname(String sclassname) {
+        this.sclassname = sclassname;
     }
 
     public String getSunique() {
@@ -53,15 +52,6 @@ public class student {
     }
 
     public void setSunique(String sunique) {
-        this.sunique = sunique;
-    }
-
-    public student(int sid, String sname, String spassword, String sclass, int syear, String sunique) {
-        this.sid = sid;
-        this.sname = sname;
-        this.spassword = spassword;
-        this.sclass = sclass;
-        this.syear = syear;
         this.sunique = sunique;
     }
 }

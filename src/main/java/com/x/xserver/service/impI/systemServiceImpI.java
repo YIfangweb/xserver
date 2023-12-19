@@ -3,9 +3,12 @@ package com.x.xserver.service.impI;
 import com.x.xserver.mapper.systemMapper;
 import com.x.xserver.pojo.student;
 import com.x.xserver.pojo.teacher;
+import com.x.xserver.pojo.xclass;
 import com.x.xserver.service.systemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class systemServiceImpI implements systemService {
@@ -54,8 +57,8 @@ public class systemServiceImpI implements systemService {
     }
 
     @Override
-    public Integer onStudentSignIn(Integer sid, String sname, String spassword, String sclass, Integer syear, String sunique) {
-        return systemMapper.onStudentSignIn(sid,sname,spassword,sclass,syear,sunique);
+    public Integer onStudentSignIn(Integer sid, String sname, String spassword, String sclassname, String sunique) {
+        return systemMapper.onStudentSignIn(sid,sname,spassword,sclassname,sunique);
     }
 
     @Override
@@ -66,5 +69,10 @@ public class systemServiceImpI implements systemService {
     @Override
     public Integer updateStudent(Integer sid, String spassword) {
         return systemMapper.updateStudent(sid,spassword);
+    }
+
+    @Override
+    public List<xclass> getAllClass() {
+        return systemMapper.getAllClass();
     }
 }

@@ -1,11 +1,14 @@
 package com.x.xserver.mapper;
 
 import com.x.xserver.pojo.teacher;
+import com.x.xserver.pojo.xclass;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import com.x.xserver.pojo.student;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface systemMapper {
@@ -78,8 +81,8 @@ public interface systemMapper {
      * 学生注册接口
      * @return Integer
      */
-    @Insert("insert into x_students(sid, sname, spassword, sclass, syear, sunique) values (#{sid},#{sname},#{spassword},#{sclass},#{syear},#{sunique})")
-    Integer onStudentSignIn(Integer sid, String sname, String spassword, String sclass, Integer syear, String sunique);
+    @Insert("insert into x_students(sid, sname, spassword, sclassname, sunique) values (#{sid},#{sname},#{spassword},#{sclassname},#{sunique})")
+    Integer onStudentSignIn(Integer sid, String sname, String spassword, String sclassname, String sunique);
 
     /**
      * 教师注册接口
@@ -94,4 +97,11 @@ public interface systemMapper {
      */
     @Update("update x_students set  spassword = #{spassword} where sid = #{sid}")
     Integer updateStudent(Integer sid,  String spassword);
+
+    /**
+     * 获取全部班级
+     * @return list
+     */
+    @Select("select * from x_class")
+    List<xclass> getAllClass();
 }
