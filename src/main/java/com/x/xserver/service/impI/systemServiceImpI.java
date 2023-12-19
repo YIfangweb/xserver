@@ -1,6 +1,7 @@
 package com.x.xserver.service.impI;
 
 import com.x.xserver.mapper.systemMapper;
+import com.x.xserver.pojo.paper;
 import com.x.xserver.pojo.student;
 import com.x.xserver.pojo.teacher;
 import com.x.xserver.pojo.xclass;
@@ -75,4 +76,10 @@ public class systemServiceImpI implements systemService {
     public List<xclass> getAllClass() {
         return systemMapper.getAllClass();
     }
+
+    @Override
+    public List<paper> getPaperList() {
+        return systemMapper.getPaperList();
+    }
+
 }

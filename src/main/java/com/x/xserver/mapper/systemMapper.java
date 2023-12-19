@@ -1,5 +1,6 @@
 package com.x.xserver.mapper;
 
+import com.x.xserver.pojo.paper;
 import com.x.xserver.pojo.teacher;
 import com.x.xserver.pojo.xclass;
 import org.apache.ibatis.annotations.Insert;
@@ -104,4 +105,11 @@ public interface systemMapper {
      */
     @Select("select * from x_class")
     List<xclass> getAllClass();
+
+    /**
+     * 获取全部论文
+     * @return list
+     */
+    @Select("select * from x_paper")
+    List<paper> getPaperList();
 }

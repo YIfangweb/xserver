@@ -103,4 +103,9 @@ public class systemController {
     public List<xclass> getClassName() {
         return systemService.getAllClass();
     }
+
+    @GetMapping("/getPaperList")
+    public List<paper> getPaperList() {
+        return systemService.getPaperList();
+    }
 }

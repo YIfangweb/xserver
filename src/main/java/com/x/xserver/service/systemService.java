@@ -1,5 +1,6 @@
 package com.x.xserver.service;
 
+import com.x.xserver.pojo.paper;
 import com.x.xserver.pojo.student;
 import com.x.xserver.pojo.teacher;
 import com.x.xserver.pojo.xclass;
@@ -32,5 +33,7 @@ public interface systemService {
     public Integer updateStudent(Integer sid, String spassword);
 
     List<xclass> getAllClass();
+
+    List<paper> getPaperList();
 
 }
