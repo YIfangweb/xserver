@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -105,7 +107,36 @@ public class systemController {
     }
 
     @GetMapping("/getPaperList")
-    public List<paper> getPaperList() {
-        return systemService.getPaperList();
+    public List<paper> getPaperList(@RequestParam("sunique")String sunique) {
+        return systemService.getPaperList(sunique);
+    }
+
+    @PostMapping("/submitPaper")
+    @Transactional
+    public Integer insertPaper(@RequestParam("sunique")String sunique,
+                              @RequestParam("ptitle")String ptitle,
+                              @RequestParam("pdata")String pdata) {
+        systemUnitl systemUnitl = new systemUnitl();
+        Integer pid;
+        paper byPid;
+        do {
+            pid = systemUnitl.getPid();
+            byPid = systemService.findByPid(pid);
+        } while (byPid != null);
+        student student = systemService.findBySunique(sunique);
+        return systemService.addPaper(pid,student.sunique,ptitle,student.sname,pdata);
+    }
+
+    @PostMapping ("/getPaper")
+    public paper  getPaper(@RequestParam("pid")String pid){
+        return systemService.getPaper(pid);
+    }
+
+    @PostMapping("/updatePaper")
+    @Transactional
+    public Integer updatePaper(@RequestParam("pid")String pid,
+                               @RequestParam("ptitle")String ptitle,
+                               @RequestParam("pdata")String pdata){
+        return systemService.updatePaper(Integer.parseInt(pid),ptitle,pdata);
     }
 }

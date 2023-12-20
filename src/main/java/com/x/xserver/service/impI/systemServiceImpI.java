@@ -1,10 +1,7 @@
 package com.x.xserver.service.impI;
 
 import com.x.xserver.mapper.systemMapper;
-import com.x.xserver.pojo.paper;
-import com.x.xserver.pojo.student;
-import com.x.xserver.pojo.teacher;
-import com.x.xserver.pojo.xclass;
+import com.x.xserver.pojo.*;
 import com.x.xserver.service.systemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,8 +75,28 @@ public class systemServiceImpI implements systemService {
     }
 
     @Override
-    public List<paper> getPaperList() {
-        return systemMapper.getPaperList();
+    public List<paper> getPaperList(String unique) {
+        return systemMapper.getPaperList(unique);
+    }
+
+    @Override
+    public Integer addPaper(Integer pid, String unique, String ptitle, String pauthor, String pdata) {
+        return systemMapper.addPaper(pid,unique,ptitle,pauthor,pdata);
+    }
+
+    @Override
+    public paper findByPid(Integer pid) {
+        return systemMapper.findByPid(String.valueOf(pid));
+    }
+
+    @Override
+    public paper getPaper(String pid) {
+        return systemMapper.findByPid(pid);
+    }
+
+    @Override
+    public Integer updatePaper(Integer pid, String ptitle, String pdata) {
+        return systemMapper.updatePaper(pid,ptitle,pdata);
     }
 
 }

@@ -1,12 +1,9 @@
 package com.x.xserver.mapper;
 
-import com.x.xserver.pojo.paper;
-import com.x.xserver.pojo.teacher;
-import com.x.xserver.pojo.xclass;
+import com.x.xserver.pojo.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import com.x.xserver.pojo.student;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
@@ -110,6 +107,27 @@ public interface systemMapper {
      * 获取全部论文
      * @return list
      */
-    @Select("select * from x_paper")
-    List<paper> getPaperList();
+    @Select("select * from x_paper where `unique` = #{sunique}")
+    List<paper> getPaperList(String sunique);
+
+    /**
+     * 插入论文
+     * @return list
+     */
+    @Insert("insert into x_paper(pid, `unique`, ptitle, pauthor, pdata) values(#{pid},#{unique},#{ptitle},#{pauthor},#{pdata})")
+    Integer addPaper(Integer pid, String unique, String ptitle, String pauthor, String pdata);
+
+    /**
+     * 根据论文id查询论文
+     * @return paper
+     */
+    @Select("select * from x_paper where pid = #{pid}")
+    paper findByPid(String pid);
+
+    /**
+     * 根据论文id更新论文标题和论文数据
+     * @return Integer
+     */
+    @Update("update x_paper set ptitle = #{ptitle}, pdata = #{pdata} where pid = #{pid}")
+    Integer updatePaper( Integer pid,String ptitle, String pdata);
 }

@@ -1,9 +1,6 @@
 package com.x.xserver.service;
 
-import com.x.xserver.pojo.paper;
-import com.x.xserver.pojo.student;
-import com.x.xserver.pojo.teacher;
-import com.x.xserver.pojo.xclass;
+import com.x.xserver.pojo.*;
 
 import java.util.List;
 
@@ -34,6 +31,13 @@ public interface systemService {
 
     List<xclass> getAllClass();
 
-    List<paper> getPaperList();
+    List<paper> getPaperList(String unique);
 
+    Integer addPaper(Integer pid, String unique, String ptitle, String pauthor, String pdata);
+
+    paper findByPid(Integer pid);
+
+    paper getPaper(String pid);
+
+    Integer updatePaper( Integer pid,String ptitle, String pdata);
 }

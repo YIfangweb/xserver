@@ -36,6 +36,14 @@ public class systemUnitl {
     }
 
     /**
+     * 获取论文随机id[1000000,9999999]
+     * @return pid
+     */
+    public Integer getPid() {
+        return getInteger(1000000,9999999);
+    }
+
+    /**
      *获取随机数
      * @param min
      * @param max
@@ -48,5 +56,10 @@ public class systemUnitl {
             num = Integer.valueOf(rand.nextInt(max - min + 1) + min);
         }
         return num;
+    }
+
+    //传入String类型的数据，返回Byte类型的数据
+    public byte[] getByte(String str){
+        return str.getBytes();
     }
 }
