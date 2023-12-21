@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -115,7 +117,7 @@ public class systemController {
     @Transactional
     public Integer insertPaper(@RequestParam("sunique")String sunique,
                               @RequestParam("ptitle")String ptitle,
-                              @RequestParam("pdata")String pdata) {
+                              @RequestParam("pdata") String pdata) {
         systemUnitl systemUnitl = new systemUnitl();
         Integer pid;
         paper byPid;
@@ -138,5 +140,18 @@ public class systemController {
                                @RequestParam("ptitle")String ptitle,
                                @RequestParam("pdata")String pdata){
         return systemService.updatePaper(Integer.parseInt(pid),ptitle,pdata);
+    }
+
+    @PostMapping("/searchPaper")
+    @Transactional
+    public List<paper> searchPaper(@RequestParam("unique")String sunique,
+                                  @RequestParam("searchData")String searchData){
+        return systemService.getPaperListBySearch(sunique,searchData);
+    }
+
+    @PostMapping("/deletePaper")
+    @Transactional
+    public Integer deletePaper(@RequestParam("pid")String pid,@RequestParam("sunique")String sunique){
+        return systemService.deletePaper(Integer.parseInt(pid),sunique);
     }
 }

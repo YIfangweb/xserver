@@ -1,6 +1,7 @@
 package com.x.xserver.service;
 
 import com.x.xserver.pojo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -40,4 +41,8 @@ public interface systemService {
     paper getPaper(String pid);
 
     Integer updatePaper( Integer pid,String ptitle, String pdata);
+
+    List<paper> getPaperListBySearch (String sunique, String searchData);
+
+    Integer deletePaper(Integer pid, String sunique);
 }

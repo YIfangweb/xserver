@@ -1,5 +1,7 @@
 package com.x.xserver.pojo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class paper {
     public Integer pid;
     public String unique;

@@ -5,6 +5,7 @@ import com.x.xserver.pojo.*;
 import com.x.xserver.service.systemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -97,6 +98,16 @@ public class systemServiceImpI implements systemService {
     @Override
     public Integer updatePaper(Integer pid, String ptitle, String pdata) {
         return systemMapper.updatePaper(pid,ptitle,pdata);
+    }
+
+    @Override
+    public List<paper> getPaperListBySearch(String sunique, String searchData) {
+        return systemMapper.getPaperListBySearch(sunique,searchData);
+    }
+
+    @Override
+    public Integer deletePaper(Integer pid, String sunique) {
+        return systemMapper.deletePaper(pid,sunique);
     }
 
 }

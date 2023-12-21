@@ -1,10 +1,8 @@
 package com.x.xserver.mapper;
 
 import com.x.xserver.pojo.*;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -130,4 +128,10 @@ public interface systemMapper {
      */
     @Update("update x_paper set ptitle = #{ptitle}, pdata = #{pdata} where pid = #{pid}")
     Integer updatePaper( Integer pid,String ptitle, String pdata);
+
+    @Select("select * from x_paper where `unique` = #{sunique} and ptitle like concat('%',#{searchData},'%')")
+    List<paper> getPaperListBySearch (String sunique, String searchData);
+
+    @Update("delete from x_paper where pid = #{pid} and `unique` = #{sunique}")
+    Integer deletePaper(Integer pid, String sunique);
 }
