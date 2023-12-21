@@ -44,5 +44,7 @@ public interface systemService {
 
     List<paper> getPaperListBySearch (String sunique, String searchData);
 
-    Integer deletePaper(Integer pid, String sunique);
+    Integer deletePaper(Integer pid, String unique);
+
+    Integer updateteacher(Integer tid,  String tpassword);
 }

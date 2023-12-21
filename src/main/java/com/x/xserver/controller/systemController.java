@@ -109,8 +109,8 @@ public class systemController {
     }
 
     @GetMapping("/getPaperList")
-    public List<paper> getPaperList(@RequestParam("sunique")String sunique) {
-        return systemService.getPaperList(sunique);
+    public List<paper> getPaperList(@RequestParam("unique")String unique) {
+        return systemService.getPaperList(unique);
     }
 
     @PostMapping("/submitPaper")
@@ -127,6 +127,22 @@ public class systemController {
         } while (byPid != null);
         student student = systemService.findBySunique(sunique);
         return systemService.addPaper(pid,student.sunique,ptitle,student.sname,pdata);
+    }
+
+    @PostMapping("/submitPaperBt")
+    @Transactional
+    public Integer insertPaperBt(@RequestParam("tunique")String tunique,
+                               @RequestParam("ptitle")String ptitle,
+                               @RequestParam("pdata") String pdata) {
+        systemUnitl systemUnitl = new systemUnitl();
+        Integer pid;
+        paper byPid;
+        do {
+            pid = systemUnitl.getPid();
+            byPid = systemService.findByPid(pid);
+        } while (byPid != null);
+        teacher teacher = systemService.findByTunique(tunique);
+        return systemService.addPaper(pid,teacher.tunique,ptitle,teacher.tname,pdata);
     }
 
     @PostMapping ("/getPaper")
@@ -153,5 +169,18 @@ public class systemController {
     @Transactional
     public Integer deletePaper(@RequestParam("pid")String pid,@RequestParam("sunique")String sunique){
         return systemService.deletePaper(Integer.parseInt(pid),sunique);
+    }
+
+    @PostMapping("/updateteacher")
+    @Transactional
+    public Integer updateteacher(@RequestParam("tid")Integer tid,
+                                 @RequestParam("tpassword")String tpassword) {
+        return systemService.updateteacher(tid,tpassword);
+    }
+
+    @PostMapping("/deletePaperBt")
+    @Transactional
+    public Integer deletePaperBt(@RequestParam("pid")String pid,@RequestParam("unique")String tunique){
+        return systemService.deletePaper(Integer.parseInt(pid),tunique);
     }
 }

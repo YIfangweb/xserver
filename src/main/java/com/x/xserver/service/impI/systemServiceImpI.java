@@ -106,8 +106,14 @@ public class systemServiceImpI implements systemService {
     }
 
     @Override
-    public Integer deletePaper(Integer pid, String sunique) {
-        return systemMapper.deletePaper(pid,sunique);
+    public Integer deletePaper(Integer pid, String unique) {
+        return systemMapper.deletePaper(pid,unique);
     }
+
+    @Override
+    public Integer updateteacher(Integer tid, String tpassword) {
+        return systemMapper.updateteacher(tid,tpassword);
+    }
+
 
 }

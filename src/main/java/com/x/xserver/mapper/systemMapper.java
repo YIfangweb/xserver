@@ -105,12 +105,12 @@ public interface systemMapper {
      * 获取全部论文
      * @return list
      */
-    @Select("select * from x_paper where `unique` = #{sunique}")
-    List<paper> getPaperList(String sunique);
+    @Select("select * from x_paper where `unique` = #{unique}")
+    List<paper> getPaperList(String unique);
 
     /**
      * 插入论文
-     * @return list
+     * @return Integer
      */
     @Insert("insert into x_paper(pid, `unique`, ptitle, pauthor, pdata) values(#{pid},#{unique},#{ptitle},#{pauthor},#{pdata})")
     Integer addPaper(Integer pid, String unique, String ptitle, String pauthor, String pdata);
@@ -132,6 +132,15 @@ public interface systemMapper {
     @Select("select * from x_paper where `unique` = #{sunique} and ptitle like concat('%',#{searchData},'%')")
     List<paper> getPaperListBySearch (String sunique, String searchData);
 
-    @Update("delete from x_paper where pid = #{pid} and `unique` = #{sunique}")
-    Integer deletePaper(Integer pid, String sunique);
+    @Update("delete from x_paper where pid = #{pid} and `unique` = #{unique}")
+    Integer deletePaper(Integer pid, String unique);
+
+    /**
+     * 老师修改接口
+     * @return Integer
+     */
+    @Update("update x_teacher set  tpassword = #{tpassword} where tid = #{tid}")
+    Integer updateteacher(Integer tid,  String tpassword);
+
+
 }
