@@ -44,6 +44,14 @@ public class systemUnitl {
     }
 
     /**
+     * 获取课题随机id[1000000,9999999]
+     * @return topid
+     */
+    public Integer getTopid() {
+        return getInteger(1000000,9999999);
+    }
+
+    /**
      *获取随机数
      * @param min
      * @param max

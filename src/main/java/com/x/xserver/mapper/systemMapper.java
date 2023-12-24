@@ -142,5 +142,36 @@ public interface systemMapper {
     @Update("update x_teacher set  tpassword = #{tpassword} where tid = #{tid}")
     Integer updateteacher(Integer tid,  String tpassword);
 
+    /**
+     * 获取全部题目
+     * @return list
+     */
+    @Select("select * from x_topic where `topauthor` = #{topauthor}")
+    List<topic> getTopicList(String topauthor);
 
+    /**
+     * 根据topid查询题目
+     * @return topic
+     */
+    @Select("select * from x_topic where topid = #{topid}")
+    topic findByTopid(Integer topid);
+
+    /**
+     * 插入新课题
+     * @return Integer
+     */
+    @Insert("insert into x_topic(topid,toptitle,topauthor,topdescript) values(#{topid},#{title},#{topauthor},#{description})")
+    Integer addTopic(Integer topid, String title,String topauthor, String description);
+
+    @Select("select * from x_topic where topid = #{topid}")
+    topic findBytopid(Integer topid);
+
+    @Update("update x_topic set toptitle = #{title}, topdescript = #{description} where topid = #{topid}")
+    Integer updateTopic(Integer topid, String title, String description);
+
+    @Update("delete from x_topic where topid = #{topid} and topauthor = #{topauthor}")
+    Integer deleteTopic(Integer topid, String topauthor);
+
+    @Select("select * from x_topic where toptitle like concat('%',#{searchData},'%')")
+    List<topic> getTopicListBySearch(String searchData);
 }

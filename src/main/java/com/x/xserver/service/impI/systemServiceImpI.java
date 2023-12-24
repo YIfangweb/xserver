@@ -115,5 +115,40 @@ public class systemServiceImpI implements systemService {
         return systemMapper.updateteacher(tid,tpassword);
     }
 
+    @Override
+    public List<topic> getTopicList(String topauthor) {
+        return systemMapper.getTopicList(topauthor);
+    }
+
+    @Override
+    public topic findByTopid(Integer topid) {
+        return systemMapper.findByTopid(topid);
+    }
+
+    @Override
+    public Integer addTopic(Integer topid, String title, String topauthor, String description) {
+        return systemMapper.addTopic(topid,title,topauthor,description);
+    }
+
+    @Override
+    public topic findBytopid(Integer topid) {
+        return systemMapper.findByTopid(topid);
+    }
+
+    @Override
+    public Integer updateTopic(Integer topid, String title, String description) {
+        return systemMapper.updateTopic(topid,title,description);
+    }
+
+    @Override
+    public Integer deleteTopic(Integer topid, String topauthor) {
+        return systemMapper.deleteTopic(topid,topauthor);
+    }
+
+    @Override
+    public List<topic> getTopicListBySearch(String searchData) {
+        return systemMapper.getTopicListBySearch(searchData);
+    }
+
 
 }

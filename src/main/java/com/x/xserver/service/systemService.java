@@ -47,4 +47,18 @@ public interface systemService {
     Integer deletePaper(Integer pid, String unique);
 
     Integer updateteacher(Integer tid,  String tpassword);
+
+    List<topic> getTopicList(String topauthor);
+
+    topic findByTopid(Integer topid);
+
+    Integer addTopic(Integer topid, String title,String topauthor, String description);
+
+    topic findBytopid(Integer topid);
+
+    Integer updateTopic(Integer topid, String title, String description);
+
+    Integer deleteTopic(Integer topid, String topauthor);
+
+    List<topic> getTopicListBySearch(String searchData);
 }

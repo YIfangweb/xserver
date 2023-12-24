@@ -183,4 +183,50 @@ public class systemController {
     public Integer deletePaperBt(@RequestParam("pid")String pid,@RequestParam("unique")String tunique){
         return systemService.deletePaper(Integer.parseInt(pid),tunique);
     }
+
+    @PostMapping("/getTopic")
+    public List<topic> getTopicByunique(@RequestParam("unique")String unique){
+        String teacher = systemService.findByTunique(unique).tname;
+        return systemService.getTopicList(teacher);
+    }
+
+    @PostMapping("/addTopic")
+    @Transactional
+    public Integer addTopic(@RequestParam("unique")String tunique,
+                           @RequestParam("title")String title,
+                           @RequestParam("description")String description){
+        systemUnitl systemUnitl = new systemUnitl();
+        Integer topid;
+        topic bytopid;
+        do {
+            topid = systemUnitl.getTopid();
+            bytopid = systemService.findByTopid(topid);
+        } while (bytopid != null);
+        teacher teacher = systemService.findByTunique(tunique);
+        return systemService.addTopic(topid,title,teacher.tname,description);
+    }
+
+    @PostMapping("/gettopid")
+    public topic gettopid(@RequestParam("topid")String topid){
+        return systemService.findBytopid(Integer.valueOf(topid));
+    }
+
+    @PostMapping("/updateTopic")
+    @Transactional
+    public Integer updateTopic(@RequestParam("topid")String topid,
+                              @RequestParam("title")String title,
+                              @RequestParam("description")String description){
+        return systemService.updateTopic(Integer.valueOf(topid),title,description);
+    }
+
+    @PostMapping("/deleteTopic")
+    @Transactional
+    public Integer deleteTopic(@RequestParam("topid")String topid,@RequestParam("unique")String unique){
+        return systemService.deleteTopic(Integer.valueOf(topid),systemService.findByTunique(unique).tname);
+    }
+
+    @PostMapping("/searchTopic")
+    public List<topic> searchTopic(@RequestParam("searchData")String searchData){
+        return systemService.getTopicListBySearch(searchData);
+    }
 }
