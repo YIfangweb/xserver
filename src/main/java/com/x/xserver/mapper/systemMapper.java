@@ -174,4 +174,23 @@ public interface systemMapper {
 
     @Select("select * from x_topic where toptitle like concat('%',#{searchData},'%')")
     List<topic> getTopicListBySearch(String searchData);
+
+    @Select("select * from x_class where `tunique` = #{unique}")
+    List<xclass> findByUnique(String unique);
+
+    @Update("update x_students set sid = #{id},sname = #{sname}, sclassname = #{sclassname} where sunique = #{sunique}")
+    Integer updateStudentBySunique(Integer id,String sname, String sclassname, String sunique);
+
+    @Select("select * from x_students where sclassname = #{sclassname}")
+    List<student> getStudentBySclassname(String sclassname);
+
+
+    @Update("update x_paper set pgrade = #{pgrade}, pteacher = #{pteacher} where pid = #{pid}")
+    Integer updatePaperScore(Integer pid, Integer pgrade, String pteacher);
+
+    @Select("select * from x_paper where  `unique` = #{unique}")
+    List<paper> getPaperByUnique (String unique);
+
+    @Select("select * from x_topic")
+    List<topic> getAllTopic();
 }

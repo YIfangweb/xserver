@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -228,5 +225,52 @@ public class systemController {
     @PostMapping("/searchTopic")
     public List<topic> searchTopic(@RequestParam("searchData")String searchData){
         return systemService.getTopicListBySearch(searchData);
+    }
+
+    @PostMapping("/getClasses")
+    public List<xclass> getClasses(@RequestParam("unique")String unique){
+        return systemService.findByUnique(unique);
+    }
+
+    @PostMapping("/updateStudentbyT")
+    @Transactional
+    public Integer updateStudentbyT(@RequestParam("id")Integer id,
+                                    @RequestParam("name")String name,
+                                    @RequestParam("classname")String classname,
+                                    @RequestParam("sunique")String sunique) {
+        return systemService.updateStudentBySunique(id,name,classname,sunique);
+    }
+
+    @PostMapping("/getStudentbyC")
+    public List<student> getStudentbyC(@RequestParam("classname")String sclassname){
+        return systemService.getStudentBySclassname(sclassname);
+    }
+
+    @PostMapping("/updatePaperbyT")
+    @Transactional
+    public Integer updatePaperScore(@RequestParam("id")Integer id,
+                                   @RequestParam("grade")Integer grade,
+                                   @RequestParam("unique")String unique){
+        return systemService.updatePaperScore(id,grade,systemService.findByTunique(unique).tname);
+    }
+
+    @PostMapping("/getPaperbyT")
+    public List<paper> getPaperbyT(@RequestParam("classname") String classname){
+        List<student> studentList = systemService.getStudentBySclassname(classname);
+        if (studentList.isEmpty()){
+            return null;
+        }else {
+            List<paper> paperList = new ArrayList<>();
+            List<paper> paperListS = new ArrayList<>();
+            for (student value : studentList) {
+                paperListS = systemService.getPaperByUnique(value.sunique);
+                paperList.addAll(paperListS);
+            }
+            return paperList;
+        }
+    }
+    @GetMapping("/getTopicList")
+    public List<topic> getTopicList(){
+        return systemService.getAllTopic();
     }
 }

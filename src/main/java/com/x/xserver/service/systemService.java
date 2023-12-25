@@ -1,7 +1,6 @@
 package com.x.xserver.service;
 
 import com.x.xserver.pojo.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -61,4 +60,16 @@ public interface systemService {
     Integer deleteTopic(Integer topid, String topauthor);
 
     List<topic> getTopicListBySearch(String searchData);
+
+    List<xclass> findByUnique(String unique);
+
+    Integer updateStudentBySunique(Integer id, String sname, String sclassname, String sunique);
+
+    List<student> getStudentBySclassname(String sclassname);
+
+    Integer updatePaperScore(Integer pid, Integer pgrade, String pteacher);
+
+    List<paper> getPaperByUnique (String unique);
+
+    List<topic> getAllTopic();
 }

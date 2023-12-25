@@ -5,7 +5,6 @@ import com.x.xserver.pojo.*;
 import com.x.xserver.service.systemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -148,6 +147,36 @@ public class systemServiceImpI implements systemService {
     @Override
     public List<topic> getTopicListBySearch(String searchData) {
         return systemMapper.getTopicListBySearch(searchData);
+    }
+
+    @Override
+    public List<xclass> findByUnique(String unique) {
+        return systemMapper.findByUnique(unique);
+    }
+
+    @Override
+    public Integer updateStudentBySunique(Integer id, String sname, String sclassname, String sunique) {
+        return systemMapper.updateStudentBySunique(id,sname,sclassname,sunique);
+    }
+
+    @Override
+    public List<student> getStudentBySclassname(String sclassname) {
+        return systemMapper.getStudentBySclassname(sclassname);
+    }
+
+    @Override
+    public Integer updatePaperScore(Integer pid, Integer pgrade, String pteacher) {
+        return systemMapper.updatePaperScore(pid,pgrade,pteacher);
+    }
+
+    @Override
+    public List<paper> getPaperByUnique(String unique) {
+        return systemMapper.getPaperByUnique(unique);
+    }
+
+    @Override
+    public List<topic> getAllTopic() {
+        return systemMapper.getAllTopic();
     }
 
 
